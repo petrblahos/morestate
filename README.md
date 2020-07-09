@@ -10,6 +10,8 @@ Each episode is related to a branch.
 
 A simple application with 2 lists within a single statful widget.
 
-   git clone morestate
-   git checkout episode-01
+```
+git clone morestate
+git checkout episode-01
+```
 
