@@ -1,20 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Schema {
-  String name;
-  String info;
-  Schema(this.name, this.info);
-}
-
-class Scene {
-  String name;
-  Scene(this.name);
-}
-
-class Model {
-  List<Schema> schemas = List<Schema>();
-  List<Scene> scenes = List<Scene>();
-}
+import 'package:morestate/model/model.dart';
+import 'package:morestate/ui/schemalistwidget.dart';
+import 'package:morestate/ui/scenelistwidget.dart';
 
 void main() {
   runApp(MyApp());
@@ -49,32 +37,19 @@ class _MyHomePageState extends State<MyHomePage> {
   void _updateModel() {
     setState(() {
       if (0 == _page) {
-        _model.schemas.add(Schema("new-schema", "schema-info"));
+        _model.schemas.add(Schema("new-scheme", "scheme-info"));
       } else {
-        _model.scenes.add(Scene("new-scena"));
+        _model.scenes.add(Scene("new-scene"));
       }
     });
-  }
-
-  List<Widget> _buildContents() {
-    List<Widget> ret = List<Widget>();
-    if (0 == _page) {
-      for (Schema i in _model.schemas) {
-        ret.add(Text("${i.name} :: ${i.info}"));
-      }
-    } else {
-      for (Scene i in _model.scenes) {
-        ret.add(Text("scene ${i.name}"));
-      }
-    }
-    return ret;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Count: ${0 == _page ? _model.schemas.length : _model.scenes.length}"),
+        title: Text(
+            "Count: ${0 == _page ? _model.schemas.length : _model.scenes.length}"),
       ),
       drawer: Drawer(
         child: ListView(
@@ -102,14 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: _buildContents(),
-        ),
-      ),
+      body: 0 == _page ? SchemaListWidget(_model) : SceneListWidget(_model),
       floatingActionButton: FloatingActionButton(
         onPressed: _updateModel,
         tooltip: 'Add an item',
