@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'package:morestate/model/model.dart';
+import 'package:morestate/backend.dart';
 import 'package:morestate/ui/schemalistwidget.dart';
 import 'package:morestate/ui/scenelistwidget.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyApp(storage: LocalModelStorage()));
 }
 
 class MyApp extends StatelessWidget {
+  final LocalModelStorage storage;
+  MyApp({Key key, @required this.storage});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -18,13 +21,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: MyHomePage(storage: storage),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+  final LocalModelStorage storage;
+  MyHomePage({Key key, @required this.storage}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -34,6 +38,17 @@ class _MyHomePageState extends State<MyHomePage> {
   Model _model = Model();
   int _page = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    widget.storage.loadModel().then((Model m) {
+      setState(() {
+        _model = m;
+        print("model loaded ($_page) , ${_model.schemas.length}<<");
+      });
+    });
+  }
+
   void _updateModel() {
     setState(() {
       if (0 == _page) {
@@ -42,10 +57,14 @@ class _MyHomePageState extends State<MyHomePage> {
         _model.scenes.add(Scene("new-scene"));
       }
     });
+    widget.storage.storeModel(_model).then((void v) {
+      print("model stored");
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    print("_MyHomePageState --> build, ${_model.schemas.length} $_model");
     return Scaffold(
       appBar: AppBar(
         title: Text(

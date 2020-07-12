@@ -14,6 +14,7 @@ class _SceneListState extends State<SceneListWidget> {
   _SceneListState(this._model);
   @override
   Widget build(BuildContext context) {
+    print("_SceneListState build ${_model.scenes.length} $_model");
     List<Widget> ret = List<Widget>();
     for (Scene i in _model.scenes) {
       ret.add(ListTile(

@@ -12,9 +12,12 @@ class SchemaListWidget extends StatefulWidget {
 
 class _SchemaListState extends State<SchemaListWidget> {
   Model _model;
-  _SchemaListState(this._model);
+  _SchemaListState(this._model) {
+    print("creating _SchemaListState ${_model.schemas.length}");
+  }
   @override
   Widget build(BuildContext context) {
+    print("_SchemaListWidget build ${_model.schemas.length} $_model");
     List<Widget> ret = List<Widget>();
     for (Schema i in _model.schemas) {
       ret.add(ListTile(

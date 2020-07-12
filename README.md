@@ -24,3 +24,18 @@ Splitting the UI into more widgets. Splitting the app into files.
 git clone morestate
 git checkout episode-02
 ```
+
+## Episode: Flutter základy: 03 - json, a na disk
+
+Serializing our model from/to json, storing it to a local storage.
+
+```
+git clone morestate
+git checkout episode-03
+```
+
+See also:
+https://flutter.dev/docs/development/data-and-backend/json
+https://flutter.dev/docs/cookbook/persistence/reading-writing-files
+
+
