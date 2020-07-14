@@ -43,8 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     widget.storage.loadModel().then((Model m) {
       setState(() {
-        _model = m;
-        print("model loaded ($_page) , ${_model.schemas.length}<<");
+        _model.scenes = m.scenes;
+        _model.schemas = m.schemas;
+        print("_MyHomePageState model loaded ${_model.schemas.length}");
       });
     });
   }
@@ -64,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print("_MyHomePageState --> build, ${_model.schemas.length} $_model");
+    print("_MyHomePageState build, ${_model.schemas.length}");
     return Scaffold(
       appBar: AppBar(
         title: Text(

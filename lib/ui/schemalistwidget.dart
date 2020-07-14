@@ -4,20 +4,25 @@ import 'package:morestate/model/model.dart';
 
 class SchemaListWidget extends StatefulWidget {
   final Model _model;
-  SchemaListWidget(this._model, {Key key}) : super(key: key);
+  SchemaListWidget(this._model, {Key key}) : super(key: key) {
+    print("SchemaListWidget constructor, model: ${_model.schemas.length}");
+  }
 
   @override
-  _SchemaListState createState() => _SchemaListState(_model);
+  _SchemaListState createState() {
+    print("SchemaListWidget createState, model: ${_model.schemas.length}");
+    return _SchemaListState(_model);
+  }
 }
 
 class _SchemaListState extends State<SchemaListWidget> {
   Model _model;
   _SchemaListState(this._model) {
-    print("creating _SchemaListState ${_model.schemas.length}");
+    print("_SchemaListState constructor, model: ${_model.schemas.length}");
   }
   @override
   Widget build(BuildContext context) {
-    print("_SchemaListWidget build ${_model.schemas.length} $_model");
+    print("_SchemaListState build, model: ${_model.schemas.length}");
     List<Widget> ret = List<Widget>();
     for (Schema i in _model.schemas) {
       ret.add(ListTile(

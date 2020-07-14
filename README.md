@@ -39,3 +39,16 @@ https://flutter.dev/docs/development/data-and-backend/json
 https://flutter.dev/docs/cookbook/persistence/reading-writing-files
 
 
+
+## Episode: Flutter základy: 04 - oprava chyby organizace stavu
+
+Repaired a bug with propagation of the state down the widget tree.
+
+```
+git clone morestate
+git checkout episode-04
+```
+
+See also:
+Switch channel: https://flutter.dev/docs/development/tools/sdk/upgrading
+Desktop support: https://flutter.dev/desktop
