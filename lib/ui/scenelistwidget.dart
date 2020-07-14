@@ -6,17 +6,14 @@ class SceneListWidget extends StatefulWidget {
   SceneListWidget(this._model, {Key key}) : super(key: key);
 
   @override
-  _SceneListState createState() => _SceneListState(_model);
+  _SceneListState createState() => _SceneListState();
 }
 
 class _SceneListState extends State<SceneListWidget> {
-  Model _model;
-  _SceneListState(this._model);
   @override
   Widget build(BuildContext context) {
-    print("_SceneListState build ${_model.scenes.length} $_model");
     List<Widget> ret = List<Widget>();
-    for (Scene i in _model.scenes) {
+    for (Scene i in widget._model.scenes) {
       ret.add(ListTile(
         title: Text("${i.name}"),
         subtitle: Text("Scene..."),

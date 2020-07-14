@@ -52,3 +52,17 @@ git checkout episode-04
 See also:
 Switch channel: https://flutter.dev/docs/development/tools/sdk/upgrading
 Desktop support: https://flutter.dev/desktop
+
+
+## Episode: Flutter základy: 05 - čištění
+
+Just some clean-up.
+
+```
+git clone morestate
+git checkout episode-05
+```
+
+Where should we store our application data?
+One more word about the state.
+
