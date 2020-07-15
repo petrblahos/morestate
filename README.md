@@ -66,3 +66,15 @@ git checkout episode-05
 Where should we store our application data?
 One more word about the state.
 
+
+## Episode: Flutter základy: 06 - InheritedWidget
+
+Finally using a Flutter's mechanism to pass the model
+down the widget tree.
+
+```
+git clone morestate
+git checkout episode-05
+```
+
+https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html
