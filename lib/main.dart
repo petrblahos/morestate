@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 
 import 'package:morestate/model/model.dart';
 import 'package:morestate/backend.dart';
-import 'package:morestate/ui/modelwidget.dart';
 import 'package:morestate/ui/schemalistwidget.dart';
 import 'package:morestate/ui/scenelistwidget.dart';
 
