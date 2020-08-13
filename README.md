@@ -74,7 +74,19 @@ down the widget tree.
 
 ```
 git clone morestate
-git checkout episode-05
+git checkout episode-06
 ```
 
 https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html
+
+
+## Episode: Flutter základy: 07 - provider
+
+Starting to use provider package.
+
+```
+git clone morestate
+git checkout episode-07
+```
+
+https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple
