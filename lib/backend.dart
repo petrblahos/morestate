@@ -20,15 +20,10 @@ class LocalModelStorage {
     return File('$path/modelstorage.json');
   }
 
-  Future<Model> loadModel() async {
-    try {
-      final file = await _localFile;
-      String contents = await file.readAsString();
-      return Model.fromJson(jsonDecode(contents));
-    } catch (e) {
-      // If encountering an error, return an empty model
-      return Model();
-    }
+  Future<Map<String, dynamic>> loadJson() async {
+    final file = await _localFile;
+    String contents = await file.readAsString();
+    return jsonDecode(contents);
   }
 
   Future<void> storeModel(Model model) async {

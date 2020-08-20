@@ -90,3 +90,17 @@ git checkout episode-07
 ```
 
 https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple
+
+
+## Episode: Flutter základy: 08 - connecting the backend again
+
+In the last episode, we disconnected the backend for the sake of
+simplicity. Now we reconnect it again.
+
+```
+git clone morestate
+git checkout episode-08
+
+# For the delayed-load demo, you can try:
+git checkout episode-08-delayedload
+```

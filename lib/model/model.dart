@@ -8,6 +8,7 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:morestate/backend.dart';
 
 class Schema {
   final String name;
@@ -64,12 +65,21 @@ class Model extends ChangeNotifier {
         'scenes': _scenes,
       };
 
-  Model.fromJson(Map<String, dynamic> json) {
+  Model.connectBackend(LocalModelStorage backend) {
+    loadFromBackend(backend);
+  }
+
+  void loadFromBackend(LocalModelStorage backend) async {
+    Map<String, dynamic> json = await backend.loadJson();
     for (var i in json["schemas"]) {
       _schemas.add(Schema.fromJson(i));
     }
     for (var i in json["scenes"]) {
       _scenes.add(Scene.fromJson(i));
     }
+    notifyListeners();
+    addListener(() {
+      backend.storeModel(this);
+    });
   }
 }

@@ -13,8 +13,12 @@ import 'package:morestate/ui/scenelistwidget.dart';
 // https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple
 
 void main() {
+  // create the backend object
+  LocalModelStorage backend = LocalModelStorage();
+  // connect the backend object to the model
+
   runApp(ChangeNotifierProvider(
-    create: (context) => Model(),
+    create: (context) => Model.connectBackend(backend),
     child: MyApp(),
   ));
 }
