@@ -8,7 +8,7 @@ class SceneListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<Model>(builder: (context, value, child) {
       List<Widget> ret = List<Widget>();
-      for (var i in value.scenes) {
+      for (Scene i in value.scenes) {
         ret.add(ListTile(
           title: Text(i.name),
           subtitle: Text("Scene..."),
