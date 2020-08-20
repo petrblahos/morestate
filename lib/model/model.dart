@@ -71,15 +71,33 @@ class Model extends ChangeNotifier {
 
   void loadFromBackend(LocalModelStorage backend) async {
     Map<String, dynamic> json = await backend.loadJson();
+    int delay = 1;
     for (var i in json["schemas"]) {
-      _schemas.add(Schema.fromJson(i));
+      Future.delayed(
+        Duration(seconds: delay++),
+        () {
+          _schemas.add(Schema.fromJson(i));
+          notifyListeners();
+        },
+      );
     }
     for (var i in json["scenes"]) {
-      _scenes.add(Scene.fromJson(i));
+      Future.delayed(
+        Duration(seconds: delay++),
+        () {
+          _scenes.add(Scene.fromJson(i));
+          notifyListeners();
+        },
+      );
     }
     notifyListeners();
-    addListener(() {
-      backend.storeModel(this);
-    });
+    Future.delayed(
+      Duration(seconds: delay++),
+      () {
+        addListener(() {
+          backend.storeModel(this);
+        });
+      },
+    );
   }
 }
