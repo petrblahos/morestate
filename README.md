@@ -92,7 +92,7 @@ git checkout episode-07
 https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple
 
 
-## Episode: Flutter základy: 08 - connecting the backend again
+## Episode: Flutter základy: 08 - zase ukládáme na disk
 
 In the last episode, we disconnected the backend for the sake of
 simplicity. Now we reconnect it again.
@@ -103,4 +103,15 @@ git checkout episode-08
 
 # For the delayed-load demo, you can try:
 git checkout episode-08-delayedload
+```
+
+## Episode: Flutter základy: 09 - Konec setState
+
+Right, we have the persistent model managed by provider, but there
+is still the StatefulWidget with the page number as the state in
+our widget tree. We will turn it to ChangeNotifier too.
+
+```
+git clone morestate
+git checkout episode-09
 ```

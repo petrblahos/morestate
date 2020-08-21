@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:morestate/model/model.dart';
+import 'package:morestate/model/uistate.dart';
 import 'package:morestate/backend.dart';
 import 'package:morestate/ui/schemalistwidget.dart';
 import 'package:morestate/ui/scenelistwidget.dart';
@@ -15,10 +16,13 @@ import 'package:morestate/ui/scenelistwidget.dart';
 void main() {
   // create the backend object
   LocalModelStorage backend = LocalModelStorage();
-  // connect the backend object to the model
 
-  runApp(ChangeNotifierProvider(
-    create: (context) => Model.connectBackend(backend),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+          create: (context) => Model.connectBackend(backend)),
+      ChangeNotifierProvider(create: (context) => UIState()),
+    ],
     child: MyApp(),
   ));
 }
@@ -38,17 +42,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _page = 0;
-
-  void _updateModel() {
+class MyHomePage extends StatelessWidget {
+  void _updateModel(BuildContext context) {
     Model m = Provider.of<Model>(context, listen: false);
-    if (0 == _page) {
+    UIState uistate = Provider.of<UIState>(context, listen: false);
+    if (0 == uistate.page) {
       m.addSchema();
     } else {
       m.addScene();
@@ -74,9 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
               }),
               onTap: () {
                 Navigator.pop(context);
-                setState(() {
-                  _page = 0;
-                });
+                Provider.of<UIState>(context, listen: false).page = 0;
               },
             ),
             ListTile(
@@ -84,18 +80,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Text("Scene count: ${value.getSceneCount()}");
               }),
               onTap: () {
-                setState(() {
-                  _page = 1;
-                });
                 Navigator.pop(context);
+                Provider.of<UIState>(context, listen: false).page = 1;
               },
             ),
           ],
         ),
       ),
-      body: 0 == _page ? SchemaListWidget() : SceneListWidget(),
+      body: Consumer<UIState>(builder: (context, value, child) {
+        return 0 == value.page ? SchemaListWidget() : SceneListWidget();
+      }),
       floatingActionButton: FloatingActionButton(
-        onPressed: _updateModel,
+        onPressed: () {
+          _updateModel(context);
+        },
         tooltip: 'Add an item',
         child: Icon(Icons.add),
       ),
