@@ -55,8 +55,28 @@ class Model extends ChangeNotifier {
     notifyListeners();
   }
 
+  void insertScene(int index, Scene element) {
+    _scenes.insert(index, element);
+    notifyListeners();
+  }
+
+  void insertSchema(int index, Schema element) {
+    _schemas.insert(index, element);
+    notifyListeners();
+  }
+
   void addSchema() {
     _schemas.add(Schema("New schema", "Description"));
+    notifyListeners();
+  }
+
+  void deleteScene(int index) {
+    _scenes.removeAt(index);
+    notifyListeners();
+  }
+
+  void deleteSchema(int index) {
+    _schemas.removeAt(index);
     notifyListeners();
   }
 

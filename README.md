@@ -115,3 +115,12 @@ our widget tree. We will turn it to ChangeNotifier too.
 git clone morestate
 git checkout episode-09
 ```
+
+## Episode: Flutter základy: 10 - swipe to dismiss
+
+Implementing swipe-to-dismiss and undo on the ListView.
+
+```
+git clone morestate
+git checkout episode-10
+```
